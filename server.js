@@ -13,7 +13,26 @@ var reservation = [
         customerId: "chino",
         customerName: "Cip",
         phoneNumber: "919-555-9876"
+    },
+    {
+        customerEmail: "adam",
+        customerId: "adam",
+        customerName: "adam",
+        phoneNumber: "919-555-9896"
+    },
+    {
+        customerEmail: "paul",
+        customerId: "paul",
+        customerName: "paul",
+        phoneNumber: "919-555-9776"
+    },
+    {
+        customerEmail: "alex",
+        customerId: "alex",
+        customerName: "alex",
+        phoneNumber: "919-555-9856"
     }
+
 ];
 
 var waitingList = [
@@ -22,6 +41,13 @@ var waitingList = [
         customerId: "456789",
         customerName: "Jarez Howell",
         phoneNumber: "919-555-9976"
+    },
+    
+    {
+        customerEmail: "grace",
+        customerId: "456734",
+        customerName: "grace",
+        phoneNumber: "919-555-9816"
     }
 ]
 // Connects to homepage
@@ -48,11 +74,12 @@ app.get("/api/waitingList", function(req, res) {
 // Display tables with first 5 of waiting list moved to reservations
 
 app.get("/api/waitingList/:reser", function(req, res) {
-    var tables = req.params.reser;
+    
 
     for ( var i = 0; i < waitingList.length; i++) {
+
         if (reservations < 5) {
-            waitingList[0].push(reservation);
+            reservation.push(waitingList[0]);
             return res.json(reservation);
         }
     }
