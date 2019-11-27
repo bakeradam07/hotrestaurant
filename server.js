@@ -63,7 +63,7 @@ app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "view.html"));
 });
 // Displays reservations
-app.get("/api/reservation", function(req, res) {
+app.get("/api/tables", function(req, res) {
     return res.json(reservation);
 });
 // Displays waiting list
@@ -78,14 +78,15 @@ app.get("/api/waitingList/:reser", function(req, res) {
 
     for ( var i = 0; i < waitingList.length; i++) {
 
-        if (reservations < 5) {
+        if (reservation < 5) {
             reservation.push(waitingList[0]);
+            waitingList.shift();
             return res.json(reservation);
         }
     }
     return res.json(false);
+    
 });
-
 app.post("/api/waitingList", function(req, res) {
     var newReservation = req.body;
 
