@@ -64,6 +64,7 @@ app.get("/tables", function(req, res) {
 });
 // Displays reservations
 app.get("/api/tables", function(req, res) {
+    update();
     return res.json(reservation);
 });
 // Displays waiting list
@@ -73,24 +74,25 @@ app.get("/api/waitingList", function(req, res) {
 
 // Display tables with first 5 of waiting list moved to reservations
 
-app.get("/api/waitingList/:reser", function(req, res) {
-    
+ function update(req, res) {
+    // var chosen = req.params.reser;
 
+    if (reservation.length <= 5) {
+        console.log("I'm in");
     for ( var i = 0; i < waitingList.length; i++) {
 
-        if (reservation < 5) {
             reservation.push(waitingList[0]);
             waitingList.shift();
-            return res.json(reservation);
+            // return res.json(reservation);
         }
     }
-    return res.json(false);
+    // return res.json(false);
     
-});
+};
 app.post("/api/waitingList", function(req, res) {
     var newReservation = req.body;
 
-    newReservation.customerName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+    newReservation.customerName = newReservation.customerName;
     console.log(newReservation);
     waitingList.push(newReservation);
     res.json(newReservation);
