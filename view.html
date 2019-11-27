@@ -33,8 +33,18 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-                        <h4 class="panel-title">Current Reservations</h4>;
-                    
+						<h4 class="panel-title">Current Reservations</h4>;
+						<script>
+						$.get("/api/reservation/", function(data) {
+							console.log(data);
+							if (data) {
+							  $("#customerEmail").text(data.customerEmail);
+							  $("#customerId").text(data.customerId);
+							  $("#customerName").text(data.customerName);
+							  $("#phoneNumber").text(data.phoneNumber);
+							} 
+						  });
+						</script>
                     </div>
 
                     <br>
@@ -45,6 +55,17 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-                        <h4 class="panel-title">Waiting List</h4>;
+						<h4 class="panel-title">Waiting List</h4>;
+						<script>
+								$.get("/api/waitingList/", function(data) {
+									console.log(data);
+									if (data) {
+									  $("#customerEmail").text(data.customerEmail);
+									  $("#customerId").text(data.customerId);
+									  $("#customerName").text(data.customerName);
+									  $("#phoneNumber").text(data.phoneNumber);
+									} 
+								  });
+								</script>
                     
                     </div>

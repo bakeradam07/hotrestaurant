@@ -75,7 +75,27 @@
             </div>
           </footer>
   
-      </div>
+	  </div>
+	  
+	  <script type="text/javascript">
+		// Question: What does this code do?
+		$("#add-btn").on("click", function(event) {
+		  event.preventDefault();
+		  var newReservation = {
+			Email: $("#customerEmail").val().trim(),
+			ID: $("#customerId").val().trim(),
+			Name: $("#customerName").val().trim(),
+			PhoneNumber: $("#phoneNumber").val().trim()
+		  };
+	
+		  // Question: What does this code do??
+		  $.post("/api/reservation", newReservation)
+			.then(function(data) {
+			  console.log("make.html", data);
+			  alert("Adding reservation...");
+			});
+		});
+	  </script>
 	    
 
 </body>
